@@ -52,5 +52,11 @@ return  EmployeeRepository.selectAll();
         e.setUid(uid);
         return EmployeeRepository.update(e);
     }
+    @DeleteMapping("/employee/{uuid}") // uid is the resourse identifier
+    public int deleteemployeebyuuid(@PathVariable("uuid") String uid)
+    {
+        return EmployeeRepository.delete(uid);
+    }
+
 }
 
