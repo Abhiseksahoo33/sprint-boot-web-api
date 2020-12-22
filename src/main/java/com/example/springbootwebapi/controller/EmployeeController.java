@@ -3,9 +3,7 @@ package com.example.springbootwebapi.controller;
 import com.example.springbootwebapi.model1.Employee;
 import com.example.springbootwebapi.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -32,9 +30,19 @@ public class EmployeeController {
     {
     return EmployeeRepository.selectByUid(uid);
     }
+
     @GetMapping("/employee/")
     public List<Employee> getallemployeedetails()
     {
 return  EmployeeRepository.selectAll();
+    }
+
+
+    @PostMapping("/employee/")
+    public Employee saveEmployee(@RequestBody Employee e)
+    {
+    String Uid= UUID.randomUUID().toString();
+    e.setUid(Uid);
+    return EmployeeRepository.insert(e);
     }
 }
