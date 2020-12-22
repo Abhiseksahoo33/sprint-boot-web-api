@@ -5,6 +5,7 @@ import com.example.springbootwebapi.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.rmi.server.UID;
 import java.util.List;
 import java.util.UUID;
 
@@ -45,4 +46,11 @@ return  EmployeeRepository.selectAll();
     e.setUid(Uid);
     return EmployeeRepository.insert(e);
     }
+    @PutMapping("/employee/{uuid}")
+    public Employee updateEmployee(@RequestBody Employee e,@PathVariable("uuid") String uid)
+    {
+        e.setUid(uid);
+        return EmployeeRepository.update(e);
+    }
 }
+
